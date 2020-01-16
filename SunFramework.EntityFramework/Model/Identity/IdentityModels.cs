@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace SunFramework.EntityFramework.Model.Identity
 {
+    //Test
     public partial class IdentityType : IEntityModel
     {
         public int GetPrimaryKey()
