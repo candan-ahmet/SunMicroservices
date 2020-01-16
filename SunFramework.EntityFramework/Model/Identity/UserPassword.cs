@@ -7,31 +7,31 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SunFramework.EntityFramework
+namespace SunFramework.EntityFramework.Model.Identity
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Role
+    public partial class UserPassword
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Role()
+        public UserPassword()
         {
-            this.Role1 = new HashSet<Role>();
-            this.Users = new HashSet<User>();
+            this.UserPassword1 = new HashSet<UserPassword>();
         }
     
-        public int RoleId { get; set; }
-        public string RoleName { get; set; }
-        public string RoleCode { get; set; }
-        public Nullable<int> ParentRoleId { get; set; }
+        public int UserPasswordId { get; set; }
+        public System.Guid UserId { get; set; }
+        public string PasswordHash { get; set; }
+        public string PasswordSalt { get; set; }
         public bool IsActive { get; set; }
-        public bool IsDeleted { get; set; }
+        public System.DateTimeOffset CreatedDate { get; set; }
+        public Nullable<System.DateTimeOffset> ExpriyDate { get; set; }
+        public Nullable<int> ChangeUserPasswordId { get; set; }
     
+        public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Role> Role1 { get; set; }
-        public virtual Role Role2 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<UserPassword> UserPassword1 { get; set; }
+        public virtual UserPassword UserPassword2 { get; set; }
     }
 }

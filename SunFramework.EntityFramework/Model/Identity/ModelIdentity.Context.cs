@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SunFramework.EntityFramework
+namespace SunFramework.EntityFramework.Model.Identity
 {
     using System;
     using System.Data.Entity;
@@ -15,10 +15,10 @@ namespace SunFramework.EntityFramework
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class KimlikEntities : DbContext
+    public partial class IdentityEntities : DbContext
     {
-        public KimlikEntities()
-            : base("name=KimlikEntities")
+        public IdentityEntities()
+            : base("name=IdentityEntities")
         {
         }
     

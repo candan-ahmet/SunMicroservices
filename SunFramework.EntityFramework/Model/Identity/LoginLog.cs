@@ -7,16 +7,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SunFramework.EntityFramework
+namespace SunFramework.EntityFramework.Model.Identity
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class sp_AddNewUser_Result
+    public partial class LoginLog
     {
         public System.Guid UserId { get; set; }
-        public string IdentityTypeName { get; set; }
-        public string UserName { get; set; }
-        public string PasswordHash { get; set; }
-        public string PasswordSalt { get; set; }
+        public System.DateTimeOffset LoginDate { get; set; }
     }
 }

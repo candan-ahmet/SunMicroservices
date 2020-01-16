@@ -7,31 +7,34 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SunFramework.EntityFramework
+namespace SunFramework.EntityFramework.Model.Service
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class Service
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User()
+        public Service()
         {
-            this.UserIdentities = new HashSet<UserIdentity>();
-            this.UserPasswords = new HashSet<UserPassword>();
-            this.Roles = new HashSet<Role>();
+            this.Service1 = new HashSet<Service>();
+            this.ServiceRequests = new HashSet<ServiceRequest>();
+            this.ServiceResponses = new HashSet<ServiceResponse>();
         }
     
-        public System.Guid UserId { get; set; }
-        public bool IsActive { get; set; }
-        public bool IsLock { get; set; }
-        public bool IsDeleted { get; set; }
+        public int ServiceId { get; set; }
+        public int ServiceStatusId { get; set; }
+        public string HostName { get; set; }
+        public int PortNo { get; set; }
+        public Nullable<int> BackupServiceId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserIdentity> UserIdentities { get; set; }
+        public virtual ICollection<Service> Service1 { get; set; }
+        public virtual Service Service2 { get; set; }
+        public virtual ServiceStatu ServiceStatu { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserPassword> UserPasswords { get; set; }
+        public virtual ICollection<ServiceRequest> ServiceRequests { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Role> Roles { get; set; }
+        public virtual ICollection<ServiceResponse> ServiceResponses { get; set; }
     }
 }

@@ -1,0 +1,345 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ServisModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="ServiceId" />
+          </Key>
+          <Property Name="ServiceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ServiceStatusId" Type="int" Nullable="false" />
+          <Property Name="HostName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PortNo" Type="int" Nullable="false" />
+          <Property Name="BackupServiceId" Type="int" />
+        </EntityType>
+        <EntityType Name="ServiceRequest">
+          <Key>
+            <PropertyRef Name="ServiceRequestId" />
+          </Key>
+          <Property Name="ServiceRequestId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ServiceId" Type="int" Nullable="false" />
+          <Property Name="RequestDate" Type="datetime" Nullable="false" />
+          <Property Name="RequestIP" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RequestData" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="ServiceResponse">
+          <Key>
+            <PropertyRef Name="ServiceResponseId" />
+          </Key>
+          <Property Name="ServiceResponseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ServiceId" Type="int" Nullable="false" />
+          <Property Name="ServiceRequestId" Type="int" />
+          <Property Name="ResponseDate" Type="datetime" />
+          <Property Name="ResponseStatusCode" Type="varchar" MaxLength="10" />
+          <Property Name="ResponseData" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="ServiceStatus">
+          <Key>
+            <PropertyRef Name="ServiceStatusId" />
+          </Key>
+          <Property Name="ServiceStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="StatusName" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_Service_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="0..1" />
+          <End Role="Service1" Type="Self.Service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="ServiceId" />
+            </Principal>
+            <Dependent Role="Service1">
+              <PropertyRef Name="BackupServiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Service_ServiceStatus">
+          <End Role="ServiceStatus" Type="Self.ServiceStatus" Multiplicity="1" />
+          <End Role="Service" Type="Self.Service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceStatus">
+              <PropertyRef Name="ServiceStatusId" />
+            </Principal>
+            <Dependent Role="Service">
+              <PropertyRef Name="ServiceStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ServiceRequest_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="1" />
+          <End Role="ServiceRequest" Type="Self.ServiceRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="ServiceId" />
+            </Principal>
+            <Dependent Role="ServiceRequest">
+              <PropertyRef Name="ServiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ServiceResponse_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="1" />
+          <End Role="ServiceResponse" Type="Self.ServiceResponse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="ServiceId" />
+            </Principal>
+            <Dependent Role="ServiceResponse">
+              <PropertyRef Name="ServiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ServiceResponse_ServiceRequest">
+          <End Role="ServiceRequest" Type="Self.ServiceRequest" Multiplicity="0..1" />
+          <End Role="ServiceResponse" Type="Self.ServiceResponse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceRequest">
+              <PropertyRef Name="ServiceRequestId" />
+            </Principal>
+            <Dependent Role="ServiceResponse">
+              <PropertyRef Name="ServiceRequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ServisModelStoreContainer">
+          <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServiceRequest" EntityType="Self.ServiceRequest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServiceResponse" EntityType="Self.ServiceResponse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServiceStatus" EntityType="Self.ServiceStatus" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_Service_Service" Association="Self.fk_Service_Service">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="Service1" EntitySet="Service" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Service_ServiceStatus" Association="Self.fk_Service_ServiceStatus">
+            <End Role="ServiceStatus" EntitySet="ServiceStatus" />
+            <End Role="Service" EntitySet="Service" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ServiceRequest_Service" Association="Self.fk_ServiceRequest_Service">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="ServiceRequest" EntitySet="ServiceRequest" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ServiceResponse_Service" Association="Self.fk_ServiceResponse_Service">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="ServiceResponse" EntitySet="ServiceResponse" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ServiceResponse_ServiceRequest" Association="Self.fk_ServiceResponse_ServiceRequest">
+            <End Role="ServiceRequest" EntitySet="ServiceRequest" />
+            <End Role="ServiceResponse" EntitySet="ServiceResponse" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ServisModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="ServiceId" />
+          </Key>
+          <Property Name="ServiceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ServiceStatusId" Type="Int32" Nullable="false" />
+          <Property Name="HostName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PortNo" Type="Int32" Nullable="false" />
+          <Property Name="BackupServiceId" Type="Int32" />
+          <NavigationProperty Name="Service1" Relationship="Self.fk_Service_Service" FromRole="Service" ToRole="Service1" />
+          <NavigationProperty Name="Service2" Relationship="Self.fk_Service_Service" FromRole="Service1" ToRole="Service" />
+          <NavigationProperty Name="ServiceStatu" Relationship="Self.fk_Service_ServiceStatus" FromRole="Service" ToRole="ServiceStatus" />
+          <NavigationProperty Name="ServiceRequests" Relationship="Self.fk_ServiceRequest_Service" FromRole="Service" ToRole="ServiceRequest" />
+          <NavigationProperty Name="ServiceResponses" Relationship="Self.fk_ServiceResponse_Service" FromRole="Service" ToRole="ServiceResponse" />
+        </EntityType>
+        <EntityType Name="ServiceRequest">
+          <Key>
+            <PropertyRef Name="ServiceRequestId" />
+          </Key>
+          <Property Name="ServiceRequestId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ServiceId" Type="Int32" Nullable="false" />
+          <Property Name="RequestDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RequestIP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RequestData" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Service" Relationship="Self.fk_ServiceRequest_Service" FromRole="ServiceRequest" ToRole="Service" />
+          <NavigationProperty Name="ServiceResponses" Relationship="Self.fk_ServiceResponse_ServiceRequest" FromRole="ServiceRequest" ToRole="ServiceResponse" />
+        </EntityType>
+        <EntityType Name="ServiceResponse">
+          <Key>
+            <PropertyRef Name="ServiceResponseId" />
+          </Key>
+          <Property Name="ServiceResponseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ServiceId" Type="Int32" Nullable="false" />
+          <Property Name="ServiceRequestId" Type="Int32" />
+          <Property Name="ResponseDate" Type="DateTime" Precision="3" />
+          <Property Name="ResponseStatusCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ResponseData" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Service" Relationship="Self.fk_ServiceResponse_Service" FromRole="ServiceResponse" ToRole="Service" />
+          <NavigationProperty Name="ServiceRequest" Relationship="Self.fk_ServiceResponse_ServiceRequest" FromRole="ServiceResponse" ToRole="ServiceRequest" />
+        </EntityType>
+        <EntityType Name="ServiceStatu">
+          <Key>
+            <PropertyRef Name="ServiceStatusId" />
+          </Key>
+          <Property Name="ServiceStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="StatusName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Services" Relationship="Self.fk_Service_ServiceStatus" FromRole="ServiceStatus" ToRole="Service" />
+        </EntityType>
+        <Association Name="fk_Service_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="0..1" />
+          <End Role="Service1" Type="Self.Service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="ServiceId" />
+            </Principal>
+            <Dependent Role="Service1">
+              <PropertyRef Name="BackupServiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Service_ServiceStatus">
+          <End Role="ServiceStatus" Type="Self.ServiceStatu" Multiplicity="1" />
+          <End Role="Service" Type="Self.Service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceStatus">
+              <PropertyRef Name="ServiceStatusId" />
+            </Principal>
+            <Dependent Role="Service">
+              <PropertyRef Name="ServiceStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ServiceRequest_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="1" />
+          <End Role="ServiceRequest" Type="Self.ServiceRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="ServiceId" />
+            </Principal>
+            <Dependent Role="ServiceRequest">
+              <PropertyRef Name="ServiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ServiceResponse_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="1" />
+          <End Role="ServiceResponse" Type="Self.ServiceResponse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="ServiceId" />
+            </Principal>
+            <Dependent Role="ServiceResponse">
+              <PropertyRef Name="ServiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ServiceResponse_ServiceRequest">
+          <End Role="ServiceRequest" Type="Self.ServiceRequest" Multiplicity="0..1" />
+          <End Role="ServiceResponse" Type="Self.ServiceResponse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceRequest">
+              <PropertyRef Name="ServiceRequestId" />
+            </Principal>
+            <Dependent Role="ServiceResponse">
+              <PropertyRef Name="ServiceRequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ServisEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Services" EntityType="Self.Service" />
+          <EntitySet Name="ServiceRequests" EntityType="Self.ServiceRequest" />
+          <EntitySet Name="ServiceResponses" EntityType="Self.ServiceResponse" />
+          <EntitySet Name="ServiceStatus" EntityType="Self.ServiceStatu" />
+          <AssociationSet Name="fk_Service_Service" Association="Self.fk_Service_Service">
+            <End Role="Service" EntitySet="Services" />
+            <End Role="Service1" EntitySet="Services" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Service_ServiceStatus" Association="Self.fk_Service_ServiceStatus">
+            <End Role="ServiceStatus" EntitySet="ServiceStatus" />
+            <End Role="Service" EntitySet="Services" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ServiceRequest_Service" Association="Self.fk_ServiceRequest_Service">
+            <End Role="Service" EntitySet="Services" />
+            <End Role="ServiceRequest" EntitySet="ServiceRequests" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ServiceResponse_Service" Association="Self.fk_ServiceResponse_Service">
+            <End Role="Service" EntitySet="Services" />
+            <End Role="ServiceResponse" EntitySet="ServiceResponses" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ServiceResponse_ServiceRequest" Association="Self.fk_ServiceResponse_ServiceRequest">
+            <End Role="ServiceRequest" EntitySet="ServiceRequests" />
+            <End Role="ServiceResponse" EntitySet="ServiceResponses" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ServisModelStoreContainer" CdmEntityContainer="ServisEntities">
+          <EntitySetMapping Name="Services">
+            <EntityTypeMapping TypeName="ServisModel.Service">
+              <MappingFragment StoreEntitySet="Service">
+                <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+                <ScalarProperty Name="ServiceStatusId" ColumnName="ServiceStatusId" />
+                <ScalarProperty Name="HostName" ColumnName="HostName" />
+                <ScalarProperty Name="PortNo" ColumnName="PortNo" />
+                <ScalarProperty Name="BackupServiceId" ColumnName="BackupServiceId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceRequests">
+            <EntityTypeMapping TypeName="ServisModel.ServiceRequest">
+              <MappingFragment StoreEntitySet="ServiceRequest">
+                <ScalarProperty Name="ServiceRequestId" ColumnName="ServiceRequestId" />
+                <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+                <ScalarProperty Name="RequestDate" ColumnName="RequestDate" />
+                <ScalarProperty Name="RequestIP" ColumnName="RequestIP" />
+                <ScalarProperty Name="RequestData" ColumnName="RequestData" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceResponses">
+            <EntityTypeMapping TypeName="ServisModel.ServiceResponse">
+              <MappingFragment StoreEntitySet="ServiceResponse">
+                <ScalarProperty Name="ServiceResponseId" ColumnName="ServiceResponseId" />
+                <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+                <ScalarProperty Name="ServiceRequestId" ColumnName="ServiceRequestId" />
+                <ScalarProperty Name="ResponseDate" ColumnName="ResponseDate" />
+                <ScalarProperty Name="ResponseStatusCode" ColumnName="ResponseStatusCode" />
+                <ScalarProperty Name="ResponseData" ColumnName="ResponseData" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceStatus">
+            <EntityTypeMapping TypeName="ServisModel.ServiceStatu">
+              <MappingFragment StoreEntitySet="ServiceStatus">
+                <ScalarProperty Name="ServiceStatusId" ColumnName="ServiceStatusId" />
+                <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

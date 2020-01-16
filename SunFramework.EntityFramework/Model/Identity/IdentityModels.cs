@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SunFramework.EntityFramework
+namespace SunFramework.EntityFramework.Model.Identity
 {
     public partial class IdentityType : IEntityModel
     {

@@ -355,7 +355,7 @@
           <End Role="Role" Type="Self.Role" Multiplicity="*" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="KimlikEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="IdentityEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="IdentityTypes" EntityType="Self.IdentityType" />
           <EntitySet Name="LoginLogs" EntityType="Self.LoginLog" />
           <EntitySet Name="Roles" EntityType="Self.Role" />
@@ -433,7 +433,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="KimlikModelStoreContainer" CdmEntityContainer="KimlikEntities">
+        <EntityContainerMapping StorageEntityContainer="KimlikModelStoreContainer" CdmEntityContainer="IdentityEntities">
           <EntitySetMapping Name="IdentityTypes">
             <EntityTypeMapping TypeName="KimlikModel.IdentityType">
               <MappingFragment StoreEntitySet="IdentityType">

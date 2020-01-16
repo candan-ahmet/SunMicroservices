@@ -7,20 +7,25 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SunFramework.EntityFramework
+namespace SunFramework.EntityFramework.Model.Identity
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class UserIdentity
+    public partial class IdentityType
     {
-        public Nullable<System.Guid> UserId { get; set; }
-        public string Value { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public IdentityType()
+        {
+            this.UserIdentities = new HashSet<UserIdentity>();
+        }
+    
         public int IdentityTypeId { get; set; }
+        public string TypeName { get; set; }
         public bool IsActive { get; set; }
         public bool IsDeleted { get; set; }
     
-        public virtual IdentityType IdentityType { get; set; }
-        public virtual User User { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserIdentity> UserIdentities { get; set; }
     }
 }

@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SunFramework.EntityFramework
+namespace SunFramework.EntityFramework.Model.Identity
 {
     using System;
     
-    public partial class sp_UserPassword_Result
+    public partial class sp_AddUserPassword_Result
     {
         public System.Guid UserId { get; set; }
         public string IdentityTypeName { get; set; }

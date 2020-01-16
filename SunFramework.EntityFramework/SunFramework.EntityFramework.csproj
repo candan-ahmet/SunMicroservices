@@ -50,75 +50,96 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IdentityType.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
+    <Compile Include="Model\Identity\IdentityType.cs">
+      <DependentUpon>ModelIdentity.tt</DependentUpon>
     </Compile>
-    <Compile Include="LoginLog.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
+    <Compile Include="Model\Identity\LoginLog.cs">
+      <DependentUpon>ModelIdentity.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelDB.Context.cs">
+    <Compile Include="Model\Identity\ModelIdentity.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelDB.Context.tt</DependentUpon>
+      <DependentUpon>ModelIdentity.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelDB.cs">
+    <Compile Include="Model\Identity\ModelIdentity.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelDB.tt</DependentUpon>
+      <DependentUpon>ModelIdentity.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelDB.Designer.cs">
+    <Compile Include="Model\Identity\ModelIdentity.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelDB.edmx</DependentUpon>
+      <DependentUpon>ModelIdentity.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Model\Models.cs" />
+    <Compile Include="Model\Identity\IdentityModels.cs" />
+    <Compile Include="Model\Identity\Role.cs">
+      <DependentUpon>ModelIdentity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Identity\sp_AddNewUser_Result.cs">
+      <DependentUpon>ModelIdentity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Identity\sp_AddUserPassword_Result.cs">
+      <DependentUpon>ModelIdentity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Identity\sp_UserPassword_Result.cs">
+      <DependentUpon>ModelIdentity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Identity\User.cs">
+      <DependentUpon>ModelIdentity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Identity\UserIdentity.cs">
+      <DependentUpon>ModelIdentity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Identity\UserPassword.cs">
+      <DependentUpon>ModelIdentity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Service\ModelService.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelService.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Service\ModelService.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelService.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Service\ModelService.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelService.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Service\Service.cs">
+      <DependentUpon>ModelService.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Service\ServiceModels.cs" />
+    <Compile Include="Model\Service\ServiceRequest.cs">
+      <DependentUpon>ModelService.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Service\ServiceResponse.cs">
+      <DependentUpon>ModelService.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Service\ServiceStatu.cs">
+      <DependentUpon>ModelService.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Role.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sp_AddNewUser_Result.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sp_AddUserPassword_Result.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sp_UserPassword_Result.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="User.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="UserIdentity.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="UserPassword.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <EntityDeploy Include="ModelDB.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModelDB.Designer.cs</LastGenOutput>
-    </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <None Include="ModelDB.edmx.diagram">
-      <DependentUpon>ModelDB.edmx</DependentUpon>
+    <EntityDeploy Include="Model\Identity\ModelIdentity.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelIdentity.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model\Identity\ModelIdentity.edmx.diagram">
+      <DependentUpon>ModelIdentity.edmx</DependentUpon>
+    </None>
+    <EntityDeploy Include="Model\Service\ModelService.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelService.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model\Service\ModelService.edmx.diagram">
+      <DependentUpon>ModelService.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ModelDB.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ModelDB.Context.cs</LastGenOutput>
-      <DependentUpon>ModelDB.edmx</DependentUpon>
-    </Content>
-    <Content Include="ModelDB.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelDB.edmx</DependentUpon>
-      <LastGenOutput>ModelDB.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -128,6 +149,28 @@
       <Project>{5F6B0A40-6D59-404B-BF03-ED53471E7D62}</Project>
       <Name>SunFramework.Interface</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Model\Identity\ModelIdentity.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelIdentity.edmx</DependentUpon>
+      <LastGenOutput>ModelIdentity.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\Identity\ModelIdentity.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelIdentity.edmx</DependentUpon>
+      <LastGenOutput>ModelIdentity.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\Service\ModelService.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelService.edmx</DependentUpon>
+      <LastGenOutput>ModelService.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\Service\ModelService.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelService.edmx</DependentUpon>
+      <LastGenOutput>ModelService.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
