@@ -3,6 +3,7 @@ using SunFramework.Interface.Model;
 using SunFramework.Interface.Repository;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
