@@ -7,8 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SunFramework.EntityFramework.Model.Service
+namespace SunFramework.DataAccess.Model.Service
 {
+    using SunFramework.Interface.Model;
     using System;
     using System.Collections.Generic;
     
@@ -17,9 +18,9 @@ namespace SunFramework.EntityFramework.Model.Service
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Service()
         {
-            this.Service1 = new HashSet<Service>();
-            this.ServiceRequests = new HashSet<ServiceRequest>();
-            this.ServiceResponses = new HashSet<ServiceResponse>();
+            this.Service1 = new HashSet<IServiceModel>();
+            this.ServiceRequests = new HashSet<IServiceRequestModel>();
+            this.ServiceResponses = new HashSet<IServiceResponseModel>();
         }
     
         public int ServiceId { get; set; }
@@ -29,12 +30,12 @@ namespace SunFramework.EntityFramework.Model.Service
         public Nullable<int> BackupServiceId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Service> Service1 { get; set; }
-        public virtual Service Service2 { get; set; }
-        public virtual ServiceStatu ServiceStatu { get; set; }
+        public virtual ICollection<IServiceModel> Service1 { get; set; }
+        public virtual IServiceModel Service2 { get; set; }
+        public virtual IServiceStatusModel ServiceStatu { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ServiceRequest> ServiceRequests { get; set; }
+        public virtual ICollection<IServiceRequestModel> ServiceRequests { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ServiceResponse> ServiceResponses { get; set; }
+        public virtual ICollection<IServiceResponseModel> ServiceResponses { get; set; }
     }
 }

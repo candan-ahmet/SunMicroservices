@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SunFramework.DataAccess")]
+[assembly: AssemblyTitle("SunFramework.Abstract")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SunFramework.DataAccess")]
+[assembly: AssemblyProduct("SunFramework.Abstract")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("57dff6c0-b968-4a2d-b1d3-3df387f219d7")]
+[assembly: Guid("57700bdd-87f1-4706-903c-e68f904f9e4d")]
 
 // Version information for an assembly consists of the following four values:
 //

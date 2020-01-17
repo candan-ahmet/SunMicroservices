@@ -7,8 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SunFramework.EntityFramework.Model.Identity
+namespace SunFramework.DataAccess.Model.Identity
 {
+    using SunFramework.Interface.Model;
     using System;
     using System.Collections.Generic;
     
@@ -17,7 +18,7 @@ namespace SunFramework.EntityFramework.Model.Identity
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public IdentityType()
         {
-            this.UserIdentities = new HashSet<UserIdentity>();
+            this.UserIdentities = new HashSet<IUserIdentityModel>();
         }
     
         public int IdentityTypeId { get; set; }
@@ -26,6 +27,6 @@ namespace SunFramework.EntityFramework.Model.Identity
         public bool IsDeleted { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserIdentity> UserIdentities { get; set; }
+        public virtual ICollection<IUserIdentityModel> UserIdentities { get; set; }
     }
 }

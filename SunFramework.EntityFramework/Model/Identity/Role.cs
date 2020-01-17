@@ -7,8 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SunFramework.EntityFramework.Model.Identity
+namespace SunFramework.DataAccess.Model.Identity
 {
+    using SunFramework.Interface.Model;
     using System;
     using System.Collections.Generic;
     
@@ -17,8 +18,8 @@ namespace SunFramework.EntityFramework.Model.Identity
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Role()
         {
-            this.Role1 = new HashSet<Role>();
-            this.Users = new HashSet<User>();
+            this.Role1 = new HashSet<IRoleModel>();
+            this.Users = new HashSet<IUserModel>();
         }
     
         public int RoleId { get; set; }
@@ -29,9 +30,9 @@ namespace SunFramework.EntityFramework.Model.Identity
         public bool IsDeleted { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Role> Role1 { get; set; }
-        public virtual Role Role2 { get; set; }
+        public virtual ICollection<IRoleModel> Role1 { get; set; }
+        public virtual IRoleModel Role2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<IUserModel> Users { get; set; }
     }
 }

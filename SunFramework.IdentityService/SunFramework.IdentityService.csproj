@@ -246,6 +246,16 @@
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SunFramework.Interface\SunFramework.Interface.csproj">
+      <Project>{5f6b0a40-6d59-404b-bf03-ed53471e7d62}</Project>
+      <Name>SunFramework.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SunFramework.Manager\SunFramework.Manager.csproj">
+      <Project>{1f51b6e9-c614-482c-9864-cb4fa4505d5f}</Project>
+      <Name>SunFramework.Manager</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

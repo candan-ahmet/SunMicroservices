@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SunFramework.EntityFramework.Model.Service
+namespace SunFramework.DataAccess.Model.Service
 {
     using System;
     using System.Data.Entity;
@@ -16,7 +16,7 @@ namespace SunFramework.EntityFramework.Model.Service
     public partial class ServisEntities : DbContext
     {
         public ServisEntities()
-            : base("name=ServiceEntities")
+            : base("name=ServisEntities")
         {
         }
     

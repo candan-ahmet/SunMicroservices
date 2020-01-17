@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace SunFramework.Interface.Repository
 {
-    public interface IBaseRepository<T, TPrimaryKey> where T : IEntityModel<TPrimaryKey> where TPrimaryKey : new()
+    public interface IRepository<T> where T : IEntity
     {
-        T GetByKey(TPrimaryKey primaryKey);
+        T GetByKey(object[] parameters);
         IQueryable<T> Get();
         IQueryable<T> Get(Expression<Func<T, bool>> predicate);
         T Insert(T datas);

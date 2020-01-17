@@ -7,8 +7,8 @@
     <ProjectGuid>{57DFF6C0-B968-4A2D-B1D3-3DF387F219D7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SunFramework.EntityFramework</RootNamespace>
-    <AssemblyName>SunFramework.EntityFramework</AssemblyName>
+    <RootNamespace>SunFramework.DataAccess</RootNamespace>
+    <AssemblyName>SunFramework.DataAccess</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -48,6 +48,9 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="TrackableEntities.Common, Version=2.5.0.0, Culture=neutral, PublicKeyToken=b10b51e7b9be6a2e, processorArchitecture=MSIL">
+      <HintPath>..\packages\TrackableEntities.Common.2.5.7\lib\portable40-net40+sl5+win8+wp8+wpa81\TrackableEntities.Common.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Identity\IdentityType.cs">
@@ -145,6 +148,10 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SunFramework.Abstract\SunFramework.Abstract.csproj">
+      <Project>{57700bdd-87f1-4706-903c-e68f904f9e4d}</Project>
+      <Name>SunFramework.Abstract</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SunFramework.Interface\SunFramework.Interface.csproj">
       <Project>{5F6B0A40-6D59-404B-BF03-ED53471E7D62}</Project>
       <Name>SunFramework.Interface</Name>
