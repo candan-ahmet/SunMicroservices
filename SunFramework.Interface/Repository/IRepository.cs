@@ -8,15 +8,16 @@ using System.Threading.Tasks;
 
 namespace SunFramework.Interface.Repository
 {
-    public interface IRepository<T> where T : IEntity
+    public interface IRepository<TEntity> where TEntity : class, IEntity
     {
-        T GetByKey(object[] parameters);
-        IQueryable<T> Get();
-        IQueryable<T> Get(Expression<Func<T, bool>> predicate);
-        T Insert(T datas);
-        IList<T> Insert(IList<T> items);
-        T Update(T data);
-        T Delete(T data);
-        IList<T> Delete(Expression<Func<T, bool>> predicate);
+        TEntity GetFirst(Expression<Func<TEntity, bool>> predicate);
+        IQueryable<TEntity> Get();
+        IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> predicate);
+        TEntity Insert(TEntity datas);
+        IEnumerable<TEntity> Insert(IEnumerable<TEntity> items);
+        TEntity Delete(TEntity data);
+        ICollection<TEntity> Delete(Expression<Func<TEntity, bool>> predicate);
+        int SaveChanges();
+        Task<int> SaveChangesAsync();
     }
 }

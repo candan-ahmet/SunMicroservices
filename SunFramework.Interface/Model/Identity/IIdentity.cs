@@ -12,7 +12,6 @@ namespace SunFramework.Interface.Model
         string TypeName { get; set; }
         bool IsActive { get; set; }
         bool IsDeleted { get; set; }
-        ICollection<IUserIdentityModel> UserIdentities { get; set; }
     }
 
     public interface ILoginLogModel : IEntity
@@ -29,9 +28,6 @@ namespace SunFramework.Interface.Model
         Nullable<int> ParentRoleId { get; set; }
         bool IsActive { get; set; }
         bool IsDeleted { get; set; }
-        ICollection<IRoleModel> Role1 { get; set; }
-        IRoleModel Role2 { get; set; }
-        ICollection<IUserModel> Users { get; set; }
     }
 
     public interface IUserModel : IEntity
@@ -40,9 +36,6 @@ namespace SunFramework.Interface.Model
         bool IsActive { get; set; }
         bool IsLock { get; set; }
         bool IsDeleted { get; set; }
-        ICollection<IUserIdentityModel> UserIdentities { get; set; }
-        ICollection<IUserPasswordModel> UserPasswords { get; set; }
-        ICollection<IRoleModel> Roles { get; set; }
     }
 
     public interface IUserIdentityModel : IEntity
@@ -52,8 +45,6 @@ namespace SunFramework.Interface.Model
         int IdentityTypeId { get; set; }
         bool IsActive { get; set; }
         bool IsDeleted { get; set; }
-        IIdentityTypeModel IdentityType { get; set; }
-        IUserModel User { get; set; }
     }
 
     public interface IUserPasswordModel : IEntity
@@ -65,9 +56,6 @@ namespace SunFramework.Interface.Model
         bool IsActive { get; set; }
         System.DateTimeOffset CreatedDate { get; set; }
         Nullable<DateTimeOffset> ExpriyDate { get; set; }
-        Nullable<int> ChangeUserPasswordId { get; set; }
-        IUserModel User { get; set; }
-        ICollection<IUserPasswordModel> UserPassword1 { get; set; }
-        IUserPasswordModel UserPassword2 { get; set; }
+        Nullable<int> ChangedUserPasswordId { get; set; }
     }
 }

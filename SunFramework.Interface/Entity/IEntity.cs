@@ -7,6 +7,11 @@ using TrackableEntities;
 
 namespace SunFramework.Interface.Model
 {
+    public interface IEntity<TPrimaryKey> : IEntity
+    {
+
+    }
+
     public interface IEntity : ITrackable
     {
 

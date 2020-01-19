@@ -23,7 +23,7 @@ namespace SunFramework.DataAccess.Model.Service
 
     }
 
-    public partial class ServiceStatu : BaseEntity, IServiceStatusModel
+    public partial class ServiceStatus : BaseEntity, IServiceStatusModel
     {
 
     }

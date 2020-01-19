@@ -1,4 +1,4 @@
-namespace SunFramework.DataAccess.Model.Identity
+namespace SunFramework.DataAccess.Model.Service
 {
     using System;
     using System.Collections.Generic;
@@ -6,26 +6,26 @@ namespace SunFramework.DataAccess.Model.Identity
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("IdentityType")]
-    public partial class IdentityType
+    public partial class ServiceStatus
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public IdentityType()
+        public ServiceStatus()
         {
-            UserIdentities = new HashSet<UserIdentity>();
+            Services = new HashSet<Service>();
         }
 
-        public int IdentityTypeId { get; set; }
+        [Key]
+        public int ServiceStatusId { get; set; }
 
         [Required]
-        [StringLength(50)]
-        public string TypeName { get; set; }
+        [StringLength(10)]
+        public string StatusCode { get; set; }
 
-        public bool IsActive { get; set; }
-
-        public bool IsDeleted { get; set; }
+        [Required]
+        [StringLength(100)]
+        public string StatusName { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserIdentity> UserIdentities { get; set; }
+        public virtual ICollection<Service> Services { get; set; }
     }
 }
