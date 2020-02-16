@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SunFramework.Interface.Service
 {
-    public interface IService
+    public interface IService1
     {
         JObject GetSingle(JObject key);
         JArray Get(JObject key);

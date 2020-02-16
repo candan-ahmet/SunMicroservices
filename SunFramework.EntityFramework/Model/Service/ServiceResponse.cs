@@ -7,8 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SunFramework.EntityFramework.Model.Service
+namespace SunFramework.DataAccess.Model.Service
 {
+    using SunFramework.Interface.Model;
     using System;
     using System.Collections.Generic;
     
@@ -21,7 +22,7 @@ namespace SunFramework.EntityFramework.Model.Service
         public string ResponseStatusCode { get; set; }
         public string ResponseData { get; set; }
     
-        public virtual Service Service { get; set; }
-        public virtual ServiceRequest ServiceRequest { get; set; }
+        public virtual IServiceModel Service { get; set; }
+        public virtual IServiceRequestModel ServiceRequest { get; set; }
     }
 }

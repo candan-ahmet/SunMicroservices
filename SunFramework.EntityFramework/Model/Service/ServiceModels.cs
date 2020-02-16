@@ -1,41 +1,30 @@
-﻿using SunFramework.Interface.Model;
+﻿using SunFramework.Abstract.Entity;
+using SunFramework.Interface.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SunFramework.EntityFramework.Model.Service
+namespace SunFramework.DataAccess.Model.Service
 {
-    public partial class Service : IEntityModel
+    public partial class Service : BaseEntity, IServiceModel
     {
-        public int GetPrimaryKey()
-        {
-            return ServiceId;
-        }
+
     }
 
-    public partial class ServiceRequest : IEntityModel
+    public partial class ServiceRequest : BaseEntity, IServiceRequestModel
     {
-        public int GetPrimaryKey()
-        {
-            return ServiceRequestId;
-        }
+
     }
 
-    public partial class ServiceResponse : IEntityModel
+    public partial class ServiceResponse : BaseEntity, IServiceResponseModel
     {
-        public int GetPrimaryKey()
-        {
-            return ServiceResponseId;
-        }
+
     }
 
-    public partial class ServiceStatu : IEntityModel
+    public partial class ServiceStatu : BaseEntity, IServiceStatusModel
     {
-        public int GetPrimaryKey()
-        {
-            return ServiceStatusId;
-        }
+
     }
 }

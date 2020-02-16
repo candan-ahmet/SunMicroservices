@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SunFramework.EntityFramework.Model.Identity
+namespace SunFramework.DataAccess.Model.Identity
 {
     using System;
     using System.Data.Entity;

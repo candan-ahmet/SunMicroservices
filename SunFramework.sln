@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SunFramework.EntityFramework", "SunFramework.EntityFramework\SunFramework.EntityFramework.csproj", "{57DFF6C0-B968-4A2D-B1D3-3DF387F219D7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SunFramework.DataAccess", "SunFramework.EntityFramework\SunFramework.DataAccess.csproj", "{57DFF6C0-B968-4A2D-B1D3-3DF387F219D7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SunFramework.Interface", "SunFramework.Interface\SunFramework.Interface.csproj", "{5F6B0A40-6D59-404B-BF03-ED53471E7D62}"
 EndProject
@@ -31,7 +31,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sun.Services", "Sun.Service
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Product", "Product", "{17CAA7F9-C8E5-4597-B620-0A19A2D4E6A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Product.EntityFramework", "Product.EntityFramework\Product.EntityFramework.csproj", "{D8AA70B4-F471-47C4-8264-A2E4B19B5C28}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Product.DataAccess", "Product.EntityFramework\Product.DataAccess.csproj", "{D8AA70B4-F471-47C4-8264-A2E4B19B5C28}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Product.Repository", "Product.Repository\Product.Repository.csproj", "{8FDE157F-6241-4712-84AA-F0DA9C721246}"
 EndProject
@@ -42,6 +42,8 @@ EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "SunFramework.UI", "SunFramework.UI\SunFramework.UI.vbproj", "{58801C0F-CBF8-45AB-BA8B-F0A8E47923DF}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Product.Service", "Product.Service\Product.Service.vbproj", "{06207EB0-405F-4447-B6D4-20569D0873CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SunFramework.Abstract", "SunFramework.Abstract\SunFramework.Abstract.csproj", "{57700BDD-87F1-4706-903C-E68F904F9E4D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -113,6 +115,10 @@ Global
 		{06207EB0-405F-4447-B6D4-20569D0873CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06207EB0-405F-4447-B6D4-20569D0873CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06207EB0-405F-4447-B6D4-20569D0873CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57700BDD-87F1-4706-903C-E68F904F9E4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57700BDD-87F1-4706-903C-E68F904F9E4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57700BDD-87F1-4706-903C-E68F904F9E4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57700BDD-87F1-4706-903C-E68F904F9E4D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -135,6 +141,7 @@ Global
 		{F08600C3-8B5C-4C00-A221-B11FA7711BDA} = {17CAA7F9-C8E5-4597-B620-0A19A2D4E6A5}
 		{58801C0F-CBF8-45AB-BA8B-F0A8E47923DF} = {344AD5FE-1B34-4585-B796-CDA9F7A40537}
 		{06207EB0-405F-4447-B6D4-20569D0873CA} = {17CAA7F9-C8E5-4597-B620-0A19A2D4E6A5}
+		{57700BDD-87F1-4706-903C-E68F904F9E4D} = {FDE4EFD9-A6E3-435D-80AA-803AE4E612DE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DD4F94CF-B727-4790-8958-C9DD99FF5585}

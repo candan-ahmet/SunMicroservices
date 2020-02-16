@@ -7,8 +7,8 @@
     <ProjectGuid>{D8AA70B4-F471-47C4-8264-A2E4B19B5C28}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Product.EntityFramework</RootNamespace>
-    <AssemblyName>Product.EntityFramework</AssemblyName>
+    <RootNamespace>Product.DataAccess</RootNamespace>
+    <AssemblyName>Product.DataAccess</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

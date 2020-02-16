@@ -1,63 +1,40 @@
-﻿using SunFramework.Interface.Model;
+﻿using SunFramework.Abstract.Entity;
+using SunFramework.Interface.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SunFramework.EntityFramework.Model.Identity
+namespace SunFramework.DataAccess.Model.Identity
 {
-    //Test
-    public partial class IdentityType : IEntityModel
+    public partial class IdentityType : BaseEntity, IIdentityTypeModel
     {
-        public int GetPrimaryKey()
-        {
-            return IdentityTypeId;
-        } 
+
     }
 
-    public partial class UserIdentity : IEntityModel<string>
+    public partial class UserIdentity : BaseEntity, IUserIdentityModel
     {
-        public string GetPrimaryKey()
-        {
-            return Value;
-        }
+
     }
 
-    public partial class User : IEntityModel<Guid>
+    public partial class User : BaseEntity, IUserModel
     {
-        public Guid GetPrimaryKey()
-        {
-            return UserId;
-        }
+
     }
 
-    public partial class UserPassword : IEntityModel
+    public partial class UserPassword : BaseEntity, IUserPasswordModel
     {
-        public int GetPrimaryKey()
-        {
-            return UserPasswordId;
-        }
+
     }
 
-    public partial class Role : IEntityModel
+    public partial class Role : BaseEntity, IRoleModel
     {
-        public int GetPrimaryKey()
-        {
-            return RoleId;
-        }
+
     }
 
-    public partial class LoginLog : IEntityModel<Guid, DateTimeOffset>
+    public partial class LoginLog : BaseEntity, ILoginLogModel
     {
-        public Guid GetPrimaryKey1()
-        {
-            return UserId;
-        }
 
-        public DateTimeOffset GetPrimaryKey2()
-        {
-            return LoginDate;
-        }
     }
 }

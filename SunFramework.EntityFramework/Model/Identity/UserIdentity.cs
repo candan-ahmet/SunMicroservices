@@ -7,8 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SunFramework.EntityFramework.Model.Identity
+namespace SunFramework.DataAccess.Model.Identity
 {
+    using SunFramework.Interface.Model;
     using System;
     using System.Collections.Generic;
     
@@ -20,7 +21,7 @@ namespace SunFramework.EntityFramework.Model.Identity
         public bool IsActive { get; set; }
         public bool IsDeleted { get; set; }
     
-        public virtual IdentityType IdentityType { get; set; }
-        public virtual User User { get; set; }
+        public virtual IIdentityTypeModel IdentityType { get; set; }
+        public virtual IUserModel User { get; set; }
     }
 }

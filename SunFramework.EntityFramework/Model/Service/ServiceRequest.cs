@@ -7,8 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SunFramework.EntityFramework.Model.Service
+namespace SunFramework.DataAccess.Model.Service
 {
+    using SunFramework.Interface.Model;
     using System;
     using System.Collections.Generic;
     
@@ -17,7 +18,7 @@ namespace SunFramework.EntityFramework.Model.Service
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ServiceRequest()
         {
-            this.ServiceResponses = new HashSet<ServiceResponse>();
+            this.ServiceResponses = new HashSet<IServiceResponseModel>();
         }
     
         public int ServiceRequestId { get; set; }
@@ -26,8 +27,8 @@ namespace SunFramework.EntityFramework.Model.Service
         public string RequestIP { get; set; }
         public string RequestData { get; set; }
     
-        public virtual Service Service { get; set; }
+        public virtual IServiceModel Service { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ServiceResponse> ServiceResponses { get; set; }
+        public virtual ICollection<IServiceResponseModel> ServiceResponses { get; set; }
     }
 }

@@ -7,8 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SunFramework.EntityFramework.Model.Identity
+namespace SunFramework.DataAccess.Model.Identity
 {
+    using SunFramework.Interface.Model;
     using System;
     using System.Collections.Generic;
     
@@ -17,7 +18,7 @@ namespace SunFramework.EntityFramework.Model.Identity
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public UserPassword()
         {
-            this.UserPassword1 = new HashSet<UserPassword>();
+            this.UserPassword1 = new HashSet<IUserPasswordModel>();
         }
     
         public int UserPasswordId { get; set; }
@@ -29,9 +30,9 @@ namespace SunFramework.EntityFramework.Model.Identity
         public Nullable<System.DateTimeOffset> ExpriyDate { get; set; }
         public Nullable<int> ChangeUserPasswordId { get; set; }
     
-        public virtual User User { get; set; }
+        public virtual IUserModel User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserPassword> UserPassword1 { get; set; }
-        public virtual UserPassword UserPassword2 { get; set; }
+        public virtual ICollection<IUserPasswordModel> UserPassword1 { get; set; }
+        public virtual IUserPasswordModel UserPassword2 { get; set; }
     }
 }
