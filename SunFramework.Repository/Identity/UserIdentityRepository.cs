@@ -14,6 +14,7 @@ namespace SunFramework.Repository.Identity
     {
         public UserIdentityRepository(DbContext context) : base(context)
         {
+            
         }
     }
 }
