@@ -10,8 +10,6 @@ namespace SumFramework.Cache
 {
     public class CacheAttribute : AbstractInterceptorAttribute
     {
-        private readonly IDictionary<string, CacheModel> cache = new Dictionary<string, CacheModel>();
-
         private int cacheMinute;
 
         public CacheAttribute(int cacheTime = 360)
@@ -21,19 +19,18 @@ namespace SumFramework.Cache
 
         public async override Task Invoke(AspectContext context, AspectDelegate next)
         {
+            string mainKey = $"{context.ImplementationMethod.DeclaringType.FullName}.{context.ProxyMethod.Name}";
             string key = string.Join("", context.GetParameters().Select(c => c.Type.Name + c.Value));
-            var parameters = context.GetParameters();
-            CacheModel cacheModel;
-            if (cache.TryGetValue(key, out cacheModel) && cacheModel.CacheDate.AddMinutes(cacheMinute) >= DateTime.Now)
+            if (CacheManager.ContainsKey(mainKey, key))
             {
-                context.ReturnValue = cacheModel.Value;
+                context.ReturnValue = CacheManager.GetValue(mainKey, key, cacheMinute);
                 return;
             }
             await next(context);
             var value = context.ReturnValue;
             if (value != null)
             {
-                cache[key] = new CacheModel(value);
+                CacheManager.AddCache(mainKey, key, value);
             }
         }
     }
