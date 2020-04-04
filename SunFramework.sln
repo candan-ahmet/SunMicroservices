@@ -13,9 +13,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SunFramework.Repository", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SunFramework.Core", "SunFramework.Core\SunFramework.Core.csproj", "{22C2220D-99DC-4588-9766-6822BAAD3572}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SumFramework.LogManager", "SumFramework.LogManager\SumFramework.LogManager.csproj", "{7ED8C84E-6792-40C6-8031-C5875EB2E500}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SunFramework.LogManager", "SumFramework.LogManager\SunFramework.LogManager.csproj", "{7ED8C84E-6792-40C6-8031-C5875EB2E500}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SumFramework.Cache", "SumFramework.CacheManager\SumFramework.Cache.csproj", "{6D2948AB-A316-466F-ADB0-FF33DC0710EB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SunFramework.Cache", "SumFramework.CacheManager\SunFramework.Cache.csproj", "{6D2948AB-A316-466F-ADB0-FF33DC0710EB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sun.Framework", "Sun.Framework", "{FDE4EFD9-A6E3-435D-80AA-803AE4E612DE}"
 EndProject
@@ -74,6 +74,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspectCore.Extensions.Reflection", "SunFramework.Aspect\Aspect.Extensions.Reflection\AspectCore.Extensions.Reflection.csproj", "{89E9DC45-4DC1-4C64-8629-8617DC1021C8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspectCore.Extensions.Windsor", "SunFramework.Aspect\Aspect.Extensions.Windsor\AspectCore.Extensions.Windsor.csproj", "{5FD169E2-6655-45C5-BF0D-BF5A2592E008}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SunFramework.Authorization", "SunFramework.Authorization\SunFramework.Authorization.csproj", "{0FE1CEA3-9B9A-4BB2-A0E4-792982F5139A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -201,6 +203,10 @@ Global
 		{5FD169E2-6655-45C5-BF0D-BF5A2592E008}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FD169E2-6655-45C5-BF0D-BF5A2592E008}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FD169E2-6655-45C5-BF0D-BF5A2592E008}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FE1CEA3-9B9A-4BB2-A0E4-792982F5139A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FE1CEA3-9B9A-4BB2-A0E4-792982F5139A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FE1CEA3-9B9A-4BB2-A0E4-792982F5139A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FE1CEA3-9B9A-4BB2-A0E4-792982F5139A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -239,6 +245,7 @@ Global
 		{25F3D9E1-B5BD-4A6F-AA55-41FBC55484D2} = {81CE435C-E0DA-4CA1-AB8B-C24B291BFCDB}
 		{89E9DC45-4DC1-4C64-8629-8617DC1021C8} = {81CE435C-E0DA-4CA1-AB8B-C24B291BFCDB}
 		{5FD169E2-6655-45C5-BF0D-BF5A2592E008} = {81CE435C-E0DA-4CA1-AB8B-C24B291BFCDB}
+		{0FE1CEA3-9B9A-4BB2-A0E4-792982F5139A} = {FDE4EFD9-A6E3-435D-80AA-803AE4E612DE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DD4F94CF-B727-4790-8958-C9DD99FF5585}

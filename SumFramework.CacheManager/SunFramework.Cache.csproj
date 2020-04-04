@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1F51B6E9-C614-482C-9864-CB4FA4505D5F}</ProjectGuid>
+    <ProjectGuid>{6D2948AB-A316-466F-ADB0-FF33DC0710EB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SunFramework.Manager</RootNamespace>
-    <AssemblyName>SunFramework.Manager</AssemblyName>
+    <RootNamespace>SunFramework.Cache</RootNamespace>
+    <AssemblyName>SunFramework.Cache</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -34,8 +34,18 @@
     <Reference Include="Autofac, Version=4.4.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.4.4.0\lib\net45\Autofac.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.2\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,14 +54,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CacheAttribute.cs" />
+    <Compile Include="CacheManager.cs" />
+    <Compile Include="CacheStock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnitOfWork.cs" />
+    <Compile Include="CacheModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SumFramework.CacheManager\SunFramework.Cache.csproj">
-      <Project>{6D2948AB-A316-466F-ADB0-FF33DC0710EB}</Project>
-      <Name>SunFramework.Cache</Name>
-    </ProjectReference>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\SunFramework.Abstract\SunFramework.Abstract.csproj">
       <Project>{57700BDD-87F1-4706-903C-E68F904F9E4D}</Project>
       <Name>SunFramework.Abstract</Name>
@@ -60,21 +73,10 @@
       <Project>{3BDF2E68-928F-40F5-A107-11081A9ACD32}</Project>
       <Name>AspectCore.Abstractions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SunFramework.Aspect\Aspect.Core\AspectCore.Core.csproj">
-      <Project>{6057E77A-E625-41B2-B78D-C639AA3D8220}</Project>
-      <Name>AspectCore.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SunFramework.Aspect\Aspect.Extensions.Autofac\AspectCore.Extensions.Autofac.csproj">
-      <Project>{62966e6f-6639-49cd-a7e0-b68df2c2b034}</Project>
-      <Name>AspectCore.Extensions.Autofac</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SunFramework.Interface\SunFramework.Interface.csproj">
       <Project>{5F6B0A40-6D59-404B-BF03-ED53471E7D62}</Project>
       <Name>SunFramework.Interface</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

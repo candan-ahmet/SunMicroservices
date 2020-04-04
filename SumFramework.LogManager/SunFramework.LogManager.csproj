@@ -7,8 +7,8 @@
     <ProjectGuid>{7ED8C84E-6792-40C6-8031-C5875EB2E500}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SumFramework.LogManager</RootNamespace>
-    <AssemblyName>SumFramework.LogManager</AssemblyName>
+    <RootNamespace>SunFramework.LogManager</RootNamespace>
+    <AssemblyName>SunFramework.LogManager</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

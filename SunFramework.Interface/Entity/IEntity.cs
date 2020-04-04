@@ -12,7 +12,7 @@ namespace SunFramework.Interface.Model
 
     }
 
-    public interface IEntity : ITrackable
+    public interface IEntity //: ITrackable
     {
 
     }

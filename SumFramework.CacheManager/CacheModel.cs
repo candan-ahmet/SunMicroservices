@@ -1,16 +1,17 @@
-﻿using System;
+﻿using SunFramework.Interface.Manager.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SumFramework.Cache
+namespace SunFramework.Cache
 {
-    public class CacheModel
+    public class CacheModel : ICacheModel
     {
         private object value;
 
-        public object Value 
+        public object Value
         {
             get
             {
@@ -21,6 +22,7 @@ namespace SumFramework.Cache
                 this.value = value;
             }
         }
+
         public DateTime CacheDate { get; set; }
 
         public CacheModel(object value)

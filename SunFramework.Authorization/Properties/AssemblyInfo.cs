@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SunFramework.CacheManager")]
+[assembly: AssemblyTitle("SunFramework.Authorization")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SunFramework.CacheManager")]
+[assembly: AssemblyProduct("SunFramework.Authorization")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("6d2948ab-a316-466f-adb0-ff33dc0710eb")]
+[assembly: Guid("0fe1cea3-9b9a-4bb2-a0e4-792982f5139a")]
 
 // Version information for an assembly consists of the following four values:
 //

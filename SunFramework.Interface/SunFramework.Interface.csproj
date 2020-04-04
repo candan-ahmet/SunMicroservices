@@ -47,10 +47,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Manager\ICacheManager.cs" />
     <Compile Include="Manager\IIdentityManager.cs" />
     <Compile Include="Manager\IManager.cs" />
     <Compile Include="Manager\IServiceManager.cs" />
     <Compile Include="Entity\IEntity.cs" />
+    <Compile Include="Manager\Model\ICacheModel.cs" />
     <Compile Include="Manager\Model\IUserCreateModel.cs" />
     <Compile Include="Model\Identity\IIdentity.cs" />
     <Compile Include="Model\Service\IService.cs" />

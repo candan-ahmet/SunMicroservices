@@ -1,69 +1,48 @@
-﻿using System;
+﻿using SunFramework.Interface.Manager;
+using SunFramework.Interface.Manager.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SumFramework.Cache
+namespace SunFramework.Cache
 {
-    public class CacheManager
+    public class CacheManager : ICacheManager
     {
-        private static readonly IDictionary<string, IDictionary<string, CacheModel>> cache = new Dictionary<string, IDictionary<string, CacheModel>>();
-
-        public static object GetValue(string mainKey, string key, int cacheMinute)
+        public void AddCache(string mainKey, string key, object value)
         {
-            if (cache.ContainsKey(mainKey))
-            {
-                CacheModel model;
-                if (cache[mainKey].TryGetValue(key, out model) && model.CacheDate.AddMinutes(cacheMinute) >= DateTime.Now)
-                    return cache[mainKey][key].Value;
-            }
-
-            return null;
+            CacheStock.AddCache(mainKey, key, value);
         }
 
-        public static bool ContainsKey(string mainKey, string key)
+        public void AddCache(string mainKey, string key, ICacheModel value)
         {
-            return cache.ContainsKey(mainKey) && cache[mainKey].ContainsKey(key);
+            CacheStock.AddCache(mainKey, key, value);
         }
 
-        public static void AddCache(string mainKey, string key, object value)
+        public void ClearCache(string mainKey)
         {
-            AddCache(mainKey, key, new CacheModel(value));
+            CacheStock.ClearCache(mainKey);
         }
 
-        public static void AddCache(string mainKey, string key, CacheModel value)
+        public bool ContainsKey(string mainKey, string key)
         {
-            if (!cache.ContainsKey(mainKey))
-                cache.Add(mainKey, new Dictionary<string, CacheModel>());
-
-            var cacheValues = cache[mainKey];
-            if (!cacheValues.ContainsKey(key))
-                cacheValues.Add(key, value);
+            return CacheStock.ContainsKey(mainKey, key);
         }
 
-        public static void UpdateCache(string mainKey, string key, object value)
+        public IEnumerable<ICacheModel> GetCacheValues(string mainKey)
         {
-            if (cache.ContainsKey(mainKey))
-            {
-                var cacheValues = cache[mainKey];
-                if (cacheValues.ContainsKey(key))
-                    cacheValues[key] = new CacheModel(value);
-            }
+            return CacheStock.GetCacheValues(mainKey);
         }
 
-        public static IEnumerable<CacheModel> GetCacheValues(string mainKey)
+        public object GetValue(string mainKey, string key, int cacheMinute)
         {
-            if (cache.ContainsKey(mainKey))
-                return cache[mainKey].Values;
-
-            return null;
+            return CacheStock.GetValue(mainKey, key, cacheMinute);
         }
 
-        public static void ClearCache(string mainKey)
+        public void UpdateCache(string mainKey, string key, object value)
         {
-            if (cache.ContainsKey(mainKey))
-                cache[mainKey].Clear();
+            CacheStock.UpdateCache(mainKey, key, value);
         }
     }
 }

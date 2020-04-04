@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using AspectCore.Configuration;
 using AspectCore.Extensions.Autofac;
 using Autofac;
-using SumFramework.Cache;
+using SunFramework.Cache;
 
 namespace TestConsole
 {
@@ -27,7 +27,8 @@ namespace TestConsole
             builder.RegisterType<Test>().As<ITest>();
             var container = builder.Build();
             var test = container.Resolve<ITest>();
-
+            test.Ad = "Ahmet";
+            string t = test.Ad;
             var r1 = test.Topla(5, 3);
             var r2 = test.Topla(1, 2);
             var r3 = test.Birlestir("Ahmet", "Candan");
@@ -50,6 +51,14 @@ namespace TestConsole
 
     public interface ITest
     {
+        string Ad 
+        { 
+            [Cache]
+            get; 
+            [Cache]
+            set; 
+        }
+
         [Cache]
         int Topla(int s1, int s2);
         [Cache]
@@ -61,8 +70,17 @@ namespace TestConsole
 
     }
 
+    public class User
+    {
+        public string UserName { get; set; }
+        public string Roles { get; set; }
+    }
+
     public class Test : ITest
     {
+        public string Ad { get; set; }
+
+        public User User = new User { Roles = "admin", UserName = "acandan" };
         public int Topla(int s1, int s2)
         {
             return s1 + s2;

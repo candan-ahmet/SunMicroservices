@@ -13,14 +13,12 @@ namespace SunFramework.Interface.UnitOfWork
 {
     public interface IUnitOfWork : IDisposable
     {
+        IUserModel User { get; set; }
+        IEnumerable<IRoleModel> Roles { get; set; }
+        IEnumerable<IUserIdentityModel> UserIdentities { get; set; }
+
         IIdentityManager IdentityManager { get; set; }
         IServiceManager ServiceManager { get; set; }
-
-        int SaveChanges();
-        int ExecuteSqlCommand(string sql, params object[] parameters);
-        int? CommandTimeout { get; set; }
-        void BeginTransaction(IsolationLevel isolationLevel = IsolationLevel.Unspecified);
-        bool Commit();
-        void Rollback();
+        ICacheManager CacheManager { get; set; }
     }
 }

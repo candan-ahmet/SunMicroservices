@@ -89,9 +89,9 @@
     <Analyzer Include="..\packages\xunit.analyzers.0.10.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SumFramework.CacheManager\SumFramework.Cache.csproj">
-      <Project>{6D2948AB-A316-466F-ADB0-FF33DC0710EB}</Project>
-      <Name>SumFramework.Cache</Name>
+    <ProjectReference Include="..\SumFramework.CacheManager\SunFramework.Cache.csproj">
+      <Project>{6d2948ab-a316-466f-adb0-ff33dc0710eb}</Project>
+      <Name>SunFramework.Cache</Name>
     </ProjectReference>
     <ProjectReference Include="..\SunFramework.Aspect\Aspect.Abstractions\AspectCore.Abstractions.csproj">
       <Project>{3BDF2E68-928F-40F5-A107-11081A9ACD32}</Project>
