@@ -32,10 +32,9 @@ namespace SunFramework.Manager
         {
             var builder = CreateBuilder();
             builder.RegisterType<CacheManager>().As<ICacheManager>();
-            //builder.RegisterType<IdentityManager>().As<IIdentityManager>();
-            //builder.RegisterType<ServiceManager>().As<IServiceManager>();
+            builder.RegisterType<IdentityManager>().As<IIdentityManager>();
+            builder.RegisterType<ServiceManager>().As<IServiceManager>();
             var container = builder.Build();
-
         }
 
         public ICacheManager CacheManager { get; set; }
@@ -44,7 +43,7 @@ namespace SunFramework.Manager
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+
         }
     }
 }

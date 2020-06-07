@@ -1,61 +1,103 @@
-﻿using SunFramework.Services.Models;
+﻿using Newtonsoft.Json.Linq;
+using RestSharp;
+using SunFramework.Services.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Management;
 
 namespace SunFramework.Services.Controllers
 {
     public class RouteController : ApiController
     {
-        [HttpGet]
-        public ResponseModel Get()
-        {
-            var requestHeader = getRequestHeader();
-            return new ResponseModel();
-        }
+
 
         [HttpGet]
-        public ResponseModel Get(string parameter)
+        public IRestResponse Get()
         {
-            var requestHeader = getRequestHeader();
-            return new ResponseModel();
+            return getRequest();
         }
 
         [HttpPost]
-        public ResponseModel Post(RequestModel data)
+        public IRestResponse Post(JObject data)
         {
-            var requestHeader = getRequestHeader();
-            return new ResponseModel();
+            return getRequest();
         }
 
         [HttpPut]
-        public ResponseModel Put(RequestModel data)
+        public IRestResponse Put(JObject data)
         {
-            var requestHeader = getRequestHeader();
-            return new ResponseModel();
+            return getRequest();
         }
 
         [HttpDelete]
-        public ResponseModel Delete(RequestModel data)
+        public IRestResponse Delete(string param)
         {
-            var requestHeader = getRequestHeader();
-            return new ResponseModel();
+            return getRequest();
         }
 
-        private RequestHeader getRequestHeader()
+        [HttpDelete]
+        public IRestResponse Delete(JObject data)
         {
+            return getRequest();
+        }
+
+        private IRestResponse getRequest()
+        {
+            ResponseModel result = new ResponseModel();
             var values = Request.GetRouteData().Values;
-            if (values.Keys.Contains("controllername") && values.Keys.Contains("servicename"))
+            var headers = Request.Headers.ToList();
+            var parameters = Request.GetQueryNameValuePairs();
+            string controllerName = values["controllername"].ToString();
+            string serviceName = values["servicename"].ToString();
+            return null;
+            if (!values.Keys.Contains("controllername") || !values.Keys.Contains("servicename"))
                 return null;
-            return new RequestHeader
+            var client = new RestClient("https://api.twitter.com/1.1");
+            var request = new RestRequest();
+            request.Method = GetMethod(Request.Method.Method);
+            request.AddHeaders((from h in headers select new KeyValuePair<string, string>(h.Key, string.Join(",", h.Value))).ToList());
+            foreach (var parameter in parameters)
+                request.AddParameter(parameter.Key, parameter.Value);
+            IRestResponse response = null;
+            switch (request.Method)
             {
-                ControllerName = values["controllername"].ToString(),
-                Parameter = values.Keys.Contains("parameter") ? values["parameter"].ToString() : string.Empty,
-                ServiceName = values["servicename"].ToString()
-            };
+                case Method.GET:
+                    response = client.Get(request);
+                    break;
+                case Method.POST:
+                    response = client.Post(request);
+                    break;
+                case Method.PUT:
+                    response = client.Put(request);
+                    break;
+                case Method.DELETE:
+                    response = client.Delete(request);
+                    break;
+                default:
+                    break;
+            }
+            return response;
+        }
+
+        private Method GetMethod(string method)
+        {
+            switch (method)
+            {
+                case "GET":
+                    return Method.GET;
+                case "POST":
+                    return Method.POST;
+                case "PUT":
+                    return Method.PUT;
+                case "DELETE":
+                    return Method.DELETE;
+                default:
+                    return Method.GET;
+            }
         }
     }
 }

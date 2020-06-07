@@ -51,9 +51,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Identity\IdentityTypeRepository.cs" />
+    <Compile Include="Identity\LoginLogRepository.cs" />
     <Compile Include="Identity\UserIdentityRepository.cs" />
+    <Compile Include="Identity\UserPasswordRepository.cs" />
+    <Compile Include="Identity\RoleRepository.cs" />
     <Compile Include="Identity\UserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\ServiceStatusRepository.cs" />
+    <Compile Include="Service\ServiceResponseRepository.cs" />
+    <Compile Include="Service\ServiceRequestRepository.cs" />
     <Compile Include="Service\ServiceRepository.cs" />
   </ItemGroup>
   <ItemGroup>

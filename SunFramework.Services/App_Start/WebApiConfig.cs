@@ -15,14 +15,13 @@ namespace SunFramework.Services
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{servicename}/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
                 name: "RouteApi",
-                routeTemplate: "route/{servicename}/{controllername}/{parameter}",
+                routeTemplate: "route/{servicename}/{controllername}/{param}",
+                defaults: new { controller = "Route" }
+            );
+            config.Routes.MapHttpRoute(
+                name: "RouteApi2",
+                routeTemplate: "route/{servicename}/{controllername}/",
                 defaults: new { controller = "Route" }
             );
         }
