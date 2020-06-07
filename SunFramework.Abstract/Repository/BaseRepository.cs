@@ -13,58 +13,64 @@ namespace SunFramework.Abstract.Repository
 {
     public class BaseRepository<TEntity> : IRepository<TEntity> where TEntity : class, IEntity
     {
-        private DbContext _dbContext;
-        public BaseRepository(DbContext context)
+        public DbContext Db { get; set; }
+
+        public BaseRepository(string nameOrConnectionString)
         {
-            _dbContext = context;
+            Db = new DbContext(nameOrConnectionString);
+        }
+
+        public BaseRepository(DbContext dbContext)
+        {
+            Db = dbContext;
         }
 
         public TEntity Delete(TEntity data)
         {
-            return _dbContext.Set<TEntity>().Remove(data);
+            return Db.Set<TEntity>().Remove(data);
         }
 
         public ICollection<TEntity> Delete(Expression<Func<TEntity, bool>> predicate)
         {
             ICollection<TEntity> deleteList = new List<TEntity>();
-            foreach (var item in _dbContext.Set<TEntity>().Where(predicate))
-                deleteList.Add(_dbContext.Set<TEntity>().Remove(item));
+            foreach (var item in Db.Set<TEntity>().Where(predicate))
+                deleteList.Add(Db.Set<TEntity>().Remove(item));
             return deleteList;
         }
 
         public IQueryable<TEntity> Get()
         {
-            return _dbContext.Set<TEntity>().Where(c => true);
+            return Db.Set<TEntity>().Where(c => true);
         }
 
         public IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> predicate)
         {
-            return _dbContext.Set<TEntity>().Where(predicate);
+            return Db.Set<TEntity>().Where(predicate);
         }
 
         public TEntity GetFirst(Expression<Func<TEntity, bool>> predicate)
         {
-            return _dbContext.Set<TEntity>().First(predicate);
+            return Db.Set<TEntity>().First(predicate);
         }
 
         public TEntity Insert(TEntity data)
         {
-            return _dbContext.Set<TEntity>().Add(data);
+            return Db.Set<TEntity>().Add(data);
         }
 
         public IEnumerable<TEntity> Insert(IEnumerable<TEntity> items)
         {
-            return _dbContext.Set<TEntity>().AddRange(items);
+            return Db.Set<TEntity>().AddRange(items);
         }
 
         public int SaveChanges()
         {
-            return _dbContext.SaveChanges();
+            return Db.SaveChanges();
         }
 
         public Task<int> SaveChangesAsync()
         {
-            return _dbContext.SaveChangesAsync();
+            return Db.SaveChangesAsync();
         }
     }
 }

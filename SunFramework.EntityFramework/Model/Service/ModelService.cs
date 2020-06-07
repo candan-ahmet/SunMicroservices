@@ -20,7 +20,7 @@ namespace SunFramework.DataAccess.Model.Service
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Service>()
-                .Property(e => e.HostName)
+                .Property(e => e.Host)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Service>()

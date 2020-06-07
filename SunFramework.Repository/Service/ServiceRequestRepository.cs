@@ -12,7 +12,7 @@ namespace SunFramework.Repository.Identity
 {
     public class ServiceRequestRepository : BaseRepository<IServiceRequestModel>
     {
-        public ServiceRequestRepository(DbContext context) : base(context)
+        public ServiceRequestRepository() : base("name=ModelService")
         {
         }
     }

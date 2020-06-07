@@ -6,6 +6,7 @@ using AspectCore.Configuration;
 using AspectCore.Extensions.Autofac;
 using Autofac;
 using SunFramework.Cache;
+using SunFramework.Interface.Manager;
 
 namespace TestConsole
 {

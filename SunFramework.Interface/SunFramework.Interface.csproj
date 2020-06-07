@@ -50,7 +50,6 @@
     <Compile Include="Manager\ICacheManager.cs" />
     <Compile Include="Manager\IIdentityManager.cs" />
     <Compile Include="Manager\IManager.cs" />
-    <Compile Include="Manager\IServiceManager.cs" />
     <Compile Include="Entity\IEntity.cs" />
     <Compile Include="Manager\Model\ICacheModel.cs" />
     <Compile Include="Manager\Model\IUserCreateModel.cs" />
@@ -69,10 +68,13 @@
     <Compile Include="Repository\IUserPasswordRepository.cs" />
     <Compile Include="Repository\IUserRepository.cs" />
     <Compile Include="Service\IService.cs" />
-    <Compile Include="UnitOfWork\IManager.cs" />
-    <Compile Include="UnitOfWork\IUnitOfWork.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\SunFramework.Aspect\Aspect.Abstractions\AspectCore.Abstractions.csproj">
+      <Project>{3bdf2e68-928f-40f5-a107-11081a9acd32}</Project>
+      <Name>AspectCore.Abstractions</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

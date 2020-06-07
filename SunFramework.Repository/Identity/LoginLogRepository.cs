@@ -12,7 +12,7 @@ namespace SunFramework.Repository.Identity
 {
     public class LoginLogRepository : BaseRepository<ILoginLogModel>
     {
-        public LoginLogRepository(DbContext context) : base(context)
+        public LoginLogRepository() : base("name=ModelIdentity")
         {
         }
     }

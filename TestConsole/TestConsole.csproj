@@ -105,6 +105,10 @@
       <Project>{62966e6f-6639-49cd-a7e0-b68df2c2b034}</Project>
       <Name>AspectCore.Extensions.Autofac</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SunFramework.Interface\SunFramework.Interface.csproj">
+      <Project>{5F6B0A40-6D59-404B-BF03-ED53471E7D62}</Project>
+      <Name>SunFramework.Interface</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

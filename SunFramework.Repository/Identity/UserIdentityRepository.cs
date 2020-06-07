@@ -12,7 +12,7 @@ namespace SunFramework.Repository.Identity
 {
     public class UserIdentityRepository : BaseRepository<IUserIdentityModel>
     {
-        public UserIdentityRepository(DbContext context) : base(context)
+        public UserIdentityRepository() : base("name=ModelIdentity")
         {
             
         }

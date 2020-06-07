@@ -1,6 +1,5 @@
 ﻿using Autofac;
 using SunFramework.Interface.Manager;
-using SunFramework.Interface.UnitOfWork;
 using AspectCore.Extensions.Autofac;
 using System;
 using System.Collections.Generic;
@@ -11,6 +10,9 @@ using System.Threading.Tasks;
 using AspectCore.Configuration;
 using SunFramework.Cache;
 using SunFramework.Interface.Model;
+using SunFramework.Manager.Abstraction;
+using SunFramework.Interface.Repository;
+using SunFramework.Repository.Identity;
 
 namespace SunFramework.Manager
 {
@@ -34,7 +36,12 @@ namespace SunFramework.Manager
             builder.RegisterType<CacheManager>().As<ICacheManager>();
             builder.RegisterType<IdentityManager>().As<IIdentityManager>();
             builder.RegisterType<ServiceManager>().As<IServiceManager>();
+            builder.RegisterType<ServiceRepository>().As<IServiceRepository>();
             var container = builder.Build();
+            CacheManager = container.Resolve<ICacheManager>();
+            IdentityManager = container.Resolve<IIdentityManager>();
+            ServiceManager = container.Resolve<IServiceManager>();
+
         }
 
         public ICacheManager CacheManager { get; set; }

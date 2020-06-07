@@ -12,7 +12,7 @@ namespace SunFramework.Repository.Identity
 {
     public class RoleRepository : BaseRepository<IRoleModel>
     {
-        public RoleRepository(DbContext context) : base(context)
+        public RoleRepository() : base("name=ModelIdentity")
         {
         }
     }

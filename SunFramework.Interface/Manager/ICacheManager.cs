@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SunFramework.Interface.Manager
 {
-    public interface ICacheManager
+    public interface ICacheManager : IManager
     {
         object GetValue(string mainKey, string key, int cacheMinute);
         bool ContainsKey(string mainKey, string key);

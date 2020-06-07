@@ -17,13 +17,13 @@ namespace SunFramework.Cache
         public CacheAttribute(int cacheTime = 360)
         {
             cacheMinute = cacheTime;
+            cacheManager = new CacheManager();
         }
 
         public async override Task Invoke(AspectContext context, AspectDelegate next)
         {
             string mainKey = $"{context.ImplementationMethod.DeclaringType.FullName}.{context.ProxyMethod.Name}";
             string key = string.Join("", context.GetParameters().Select(c => c.Type.Name + c.Value));
-            return;
             if (cacheManager.ContainsKey(mainKey, key))
             {
                 context.ReturnValue = cacheManager.GetValue(mainKey, key, cacheMinute);

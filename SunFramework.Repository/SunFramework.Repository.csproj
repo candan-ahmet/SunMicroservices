@@ -40,6 +40,9 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.SqlClient, Version=4.6.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SqlClient.4.8.1\lib\net461\System.Data.SqlClient.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -67,6 +70,10 @@
     <ProjectReference Include="..\SunFramework.Abstract\SunFramework.Abstract.csproj">
       <Project>{57700BDD-87F1-4706-903C-E68F904F9E4D}</Project>
       <Name>SunFramework.Abstract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SunFramework.EntityFramework\SunFramework.DataAccess.csproj">
+      <Project>{57DFF6C0-B968-4A2D-B1D3-3DF387F219D7}</Project>
+      <Name>SunFramework.DataAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\SunFramework.Interface\SunFramework.Interface.csproj">
       <Project>{5F6B0A40-6D59-404B-BF03-ED53471E7D62}</Project>

@@ -10,7 +10,8 @@ namespace SunFramework.Interface.Model
     {
         int ServiceId { get; set; }
         int ServiceStatusId { get; set; }
-        string HostName { get; set; }
+        string Host { get; set; }
+        string ServiceName { get; set; }
         int PortNo { get; set; }
         Nullable<int> BackupServiceId { get; set; }
     }

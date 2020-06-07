@@ -23,7 +23,11 @@ namespace SunFramework.DataAccess.Model.Service
 
         [Required]
         [StringLength(50)]
-        public string HostName { get; set; }
+        public string Host { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string ServiceName { get; set; }
 
         public int PortNo { get; set; }
 

@@ -9,5 +9,7 @@ namespace SunFramework.Interface.Repository
 {
     public interface IServiceRepository : IRepository<IServiceModel>
     {
+        IServiceModel Update(int serviceId, IServiceModel model);
+        IQueryable<IServiceModel> GetActiveServices();
     }
 }

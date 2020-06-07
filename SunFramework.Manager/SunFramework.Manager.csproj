@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstraction\IServiceManager.cs" />
+    <Compile Include="Abstraction\IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Managers\IdentityManager.cs" />
     <Compile Include="Managers\ServiceManager.cs" />
@@ -73,6 +75,10 @@
     <ProjectReference Include="..\SunFramework.Interface\SunFramework.Interface.csproj">
       <Project>{5F6B0A40-6D59-404B-BF03-ED53471E7D62}</Project>
       <Name>SunFramework.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SunFramework.Repository\SunFramework.Repository.csproj">
+      <Project>{A539FE17-BCA4-4BCE-9876-E447C817BFAB}</Project>
+      <Name>SunFramework.Repository</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
