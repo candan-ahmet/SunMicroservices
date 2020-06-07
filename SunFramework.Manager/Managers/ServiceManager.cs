@@ -2,6 +2,7 @@
 using AspectCore.DynamicProxy.Parameters;
 using AspectCore.Extensions.Autofac;
 using Autofac;
+using SunFramework.Cache;
 using SunFramework.Interface.Manager;
 using SunFramework.Interface.Model;
 using SunFramework.Interface.Repository;
@@ -42,7 +43,8 @@ namespace SunFramework.Manager
 
         public IServiceModel UpdateService(IServiceModel model)
         {
-            return serviceRepository.Update(model.ServiceId, model);
+            var result = serviceRepository.Update(model.ServiceId, model);
+            return result;
         }
     }
 }

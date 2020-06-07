@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SunFramework.Cache
 {
-    public class CacheModel : ICacheModel
+    public class CacheModel : ICacheObjectModel
     {
         private object value;
 

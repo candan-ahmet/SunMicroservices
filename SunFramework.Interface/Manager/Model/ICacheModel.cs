@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SunFramework.Interface.Manager.Model
 {
-    public interface ICacheModel
+    public interface ICacheObjectModel
     {
         object Value { get; set; }
         DateTime CacheDate { get; set; }

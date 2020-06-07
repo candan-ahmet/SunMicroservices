@@ -12,7 +12,9 @@ namespace SunFramework.Manager.Abstraction
 {
     public interface IServiceManager : IManager
     {
-        [Cache]
+        [CacheArray("ServiceId")]
         ICollection<IServiceModel> GetActiveServices();
+        [CacheArrayUpdate("ServiceId")]
+        IServiceModel UpdateService(IServiceModel model);
     }
 }

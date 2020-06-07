@@ -67,6 +67,10 @@
     <Compile Include="Service\ServiceRepository.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SumFramework.CacheManager\SunFramework.Cache.csproj">
+      <Project>{6D2948AB-A316-466F-ADB0-FF33DC0710EB}</Project>
+      <Name>SunFramework.Cache</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SunFramework.Abstract\SunFramework.Abstract.csproj">
       <Project>{57700BDD-87F1-4706-903C-E68F904F9E4D}</Project>
       <Name>SunFramework.Abstract</Name>
