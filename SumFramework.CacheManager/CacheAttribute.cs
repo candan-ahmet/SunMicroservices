@@ -55,17 +55,16 @@ namespace SunFramework.Cache
         public async override Task Invoke(AspectContext context, AspectDelegate next)
         {
             string mainKey = $"{context.ImplementationMethod.DeclaringType.FullName}.{context.ProxyMethod.Name}";
-            string key = string.Join("", context.GetParameters().Select(c => c.Type.Name + c.Value));
-            if (cacheManager.ContainsKey(mainKey, key))
+            if (cacheManager.ContainsKeyArray(mainKey))
             {
-                context.ReturnValue = cacheManager.GetCacheArrayValues(mainKey, key);
+                context.ReturnValue = cacheManager.GetCacheArrayValues(mainKey);
                 return;
             }
             await next(context);
             var value = context.ReturnValue;
             if (value != null)
             {
-                cacheManager.AddCacheArray(mainKey, key, value, uniqColumn);
+                cacheManager.AddCacheArray(mainKey, value, uniqColumn);
             }
         }
     }
@@ -73,25 +72,25 @@ namespace SunFramework.Cache
 
     public class CacheArrayUpdateAttribute : AbstractInterceptorAttribute
     {
-        private string uniqColumn;
+        private string mainKey;
         ICacheManager cacheManager;
 
-        public CacheArrayUpdateAttribute(string uniqColumn)
+        public CacheArrayUpdateAttribute(string mainKey)
         {
-            this.uniqColumn = uniqColumn;
+            this.mainKey = mainKey;
             cacheManager = new CacheManager();
+            
         }
 
         public async override Task Invoke(AspectContext context, AspectDelegate next)
         {
-            string mainKey = $"{context.ImplementationMethod.DeclaringType.FullName}.{context.ProxyMethod.Name}";
-            string key = string.Join("", context.GetParameters().Select(c => c.Type.Name + c.Value));
             await next(context);
-            var value = context.ReturnValue;
+            dynamic value = context.ReturnValue;
             if (value != null)
             {
-                object uniqValue = JObject.FromObject(value)[uniqColumn];
-                cacheManager.UpdateCacheArray(mainKey, key, value, uniqValue);
+                string uniqColumn = cacheManager.CacheArrayUniqColumm(mainKey);
+                object uniqValue = value.GetType().GetProperty(uniqColumn).GetValue(value, null);
+                cacheManager.UpdateCacheArray(mainKey, value, uniqValue);
             }
         }
     }

@@ -28,7 +28,14 @@ namespace SunFramework.Repository.Identity
 
         public IServiceModel Update(int serviceId, IServiceModel model)
         {
-            throw new NotImplementedException();
+            var currentValue = Db.Set<Service>().FirstOrDefault(c => c.ServiceId == serviceId);
+            currentValue.ServiceName = model.ServiceName;
+            currentValue.PortNo = model.PortNo;
+            currentValue.Host = model.Host;
+            currentValue.ServiceStatusId = model.ServiceStatusId;
+            currentValue.BackupServiceId = model.BackupServiceId;
+            Db.SaveChanges();
+            return currentValue;
         }
     }
 }

@@ -3,6 +3,7 @@ using Newtonsoft.Json.Linq;
 using SunFramework.Interface.Manager.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -72,57 +73,57 @@ namespace SunFramework.Cache
 
     public class CacheArrayStock
     {
-        private static readonly IDictionary<string, IDictionary<string, IDictionary<object, ICacheObjectModel>>> cache = new Dictionary<string, IDictionary<string, IDictionary<object, ICacheObjectModel>>>();
-        
-        public static object GetValue(string mainKey, string key, object uniqValue, int cacheMinute)
+        private static readonly IDictionary<string, IDictionary<object, ICacheObjectModel>> cache = new Dictionary<string, IDictionary<object, ICacheObjectModel>>();
+        private static readonly IDictionary<string, string> uniqColumns = new Dictionary<string, string>();
+
+        public static object GetValue(string mainKey, object uniqValue, int cacheMinute)
         {
             if (cache.ContainsKey(mainKey))
             {
-                IDictionary<object, ICacheObjectModel> listModel;
                 ICacheObjectModel model;
-                if (cache[mainKey].TryGetValue(key, out listModel) && listModel.TryGetValue(uniqValue, out model) && model.CacheDate.AddMinutes(cacheMinute) >= DateTime.Now)
-                    return listModel[uniqValue];
+                if (cache[mainKey].TryGetValue(uniqValue, out model) && model.CacheDate.AddMinutes(cacheMinute) >= DateTime.Now)
+                    return cache[mainKey][uniqValue];
             }
 
             return null;
         }
-       
 
-
-        public static bool ContainsKey(string mainKey, string key, object uniqValue)
+        public static string GetCacheArrayUniqColumm(string mainKey)
         {
-            return cache.ContainsKey(mainKey) && cache[mainKey].ContainsKey(key) && cache[mainKey][key].ContainsKey(uniqValue);
+            return uniqColumns.ContainsKey(mainKey) ? uniqColumns[mainKey] : string.Empty;
         }
 
-        public static void AddCache(string mainKey, string key, object value, string uniqColumn)
+        public static bool ContainsKey(string mainKey)
         {
-            string jsonObject = JsonConvert.SerializeObject(value);
-            if (jsonObject.Length > 0 && jsonObject[0] == '[')
-            {
-                JArray list = JArray.FromObject(value);
-                IDictionary<object, ICacheObjectModel> cacheList = new Dictionary<object, ICacheObjectModel>();
-                foreach (var item in list)
-                    cacheList.Add(item[uniqColumn], new CacheModel(item));
-
-                if (!cache.ContainsKey(mainKey))
-                    cache.Add(mainKey, new Dictionary<string, IDictionary<object, ICacheObjectModel>>());
-
-                var cacheValues = cache[mainKey];
-                if (!cacheValues.ContainsKey(key))
-                    cacheValues.Add(key, cacheList);
-            }
+            return cache.ContainsKey(mainKey);
         }
 
-        public static void UpdateCache(string mainKey, string key, object value, object uniqValue)
+        public static void AddCache(string mainKey, object value, string uniqColumn)
         {
-            if (ContainsKey(mainKey, key, uniqValue))
-                cache[mainKey][key][uniqValue] = new CacheModel(value);
+            if (!uniqColumns.ContainsKey(mainKey))
+                uniqColumns.Add(mainKey, uniqColumn);
+
+            IDictionary<object, ICacheObjectModel> cacheList = new Dictionary<object, ICacheObjectModel>();
+            foreach (var item in (dynamic)value)
+                cacheList.Add(item.GetType().GetProperty(uniqColumn).GetValue(item, null), new CacheModel(item));
+
+            if (!cache.ContainsKey(mainKey))
+                cache.Add(mainKey, new Dictionary<object, ICacheObjectModel>());
+
+            foreach (var item in cacheList)
+                cache[mainKey].Add(item);
         }
 
-        public static IDictionary<object, ICacheObjectModel> GetCacheValues(string mainKey, string key)
+        public static void UpdateCache(string mainKey, object value, object uniqValue)
         {
-            if (cache.ContainsKey(mainKey) && cache[mainKey].ContainsKey(key))
-                return cache[mainKey][key];
+            if (cache.ContainsKey(mainKey) && cache[mainKey].ContainsKey(uniqValue))
+                cache[mainKey][uniqValue] = new CacheModel(value);
+        }
+
+        public static IDictionary<object, ICacheObjectModel> GetCacheValues(string mainKey)
+        {
+            if (cache.ContainsKey(mainKey))
+                return cache[mainKey];
 
             return null;
         }

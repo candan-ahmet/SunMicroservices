@@ -14,7 +14,7 @@ namespace SunFramework.Manager.Abstraction
     {
         [CacheArray("ServiceId")]
         ICollection<IServiceModel> GetActiveServices();
-        [CacheArrayUpdate("ServiceId")]
+        [CacheArrayUpdate("SunFramework.Manager.ServiceManager.GetActiveServices")]
         IServiceModel UpdateService(IServiceModel model);
     }
 }

@@ -17,11 +17,12 @@ namespace SunFramework.Interface.Manager
         IEnumerable<ICacheObjectModel> GetCacheValues(string mainKey);
         void ClearCache(string mainKey);
 
-        void AddCacheArray(string mainKey, string key, object value, string uniqColumn);
+        void AddCacheArray(string mainKey, object value, string uniqColumn);
         void ClearCacheArray(string mainKey);
-        bool ContainsKeyArray(string mainKey, string key, object uniqValue);
-        object[] GetCacheArrayValues(string mainKey, string key);
-        object GetCacheArrayValue(string mainKey, string key, object uniqValue, int cacheMinute);
-        void UpdateCacheArray(string mainKey, string key, object value, object uniqValue);
+        bool ContainsKeyArray(string mainKey);
+        ICollection<object> GetCacheArrayValues(string mainKey);
+        object GetCacheArrayValue(string mainKey, object uniqValue, int cacheMinute);
+        void UpdateCacheArray(string mainKey, object value, object uniqValue);
+        string CacheArrayUniqColumm(string mainKey);
     }
 }

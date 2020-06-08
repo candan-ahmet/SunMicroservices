@@ -48,9 +48,9 @@ namespace SunFramework.Cache
         }
 
 
-        public void AddCacheArray(string mainKey, string key, object value, string uniqColumn)
+        public void AddCacheArray(string mainKey, object value, string uniqColumn)
         {
-            CacheArrayStock.AddCache(mainKey, key, value, uniqColumn);
+            CacheArrayStock.AddCache(mainKey, value, uniqColumn);
         }
 
         public void ClearCacheArray(string mainKey)
@@ -58,28 +58,33 @@ namespace SunFramework.Cache
             CacheArrayStock.ClearCache(mainKey);
         }
 
-        public bool ContainsKeyArray(string mainKey, string key, object uniqValue)
+        public bool ContainsKeyArray(string mainKey)
         {
-            return CacheArrayStock.ContainsKey(mainKey, key, uniqValue);
+            return CacheArrayStock.ContainsKey(mainKey);
         }
 
-        public object[] GetCacheArrayValues(string mainKey, string key)
+        public ICollection<object> GetCacheArrayValues(string mainKey)
         {
             ICollection<object> list = new Collection<object>();
-            var result = CacheArrayStock.GetCacheValues(mainKey, key);
+            var result = CacheArrayStock.GetCacheValues(mainKey);
             foreach (var item in result)
                 list.Add(item.Value.Value);
-            return list.ToArray();
+            return list;
         }
 
-        public object GetCacheArrayValue(string mainKey, string key, object uniqValue, int cacheMinute)
+        public object GetCacheArrayValue(string mainKey, object uniqValue, int cacheMinute)
         {
-            return CacheArrayStock.GetValue(mainKey, key, uniqValue, cacheMinute);
+            return CacheArrayStock.GetValue(mainKey, uniqValue, cacheMinute);
         }
 
-        public void UpdateCacheArray(string mainKey, string key, object value, object uniqValue)
+        public void UpdateCacheArray(string mainKey, object value, object uniqValue)
         {
-            CacheArrayStock.UpdateCache(mainKey, key, value, uniqValue);
+            CacheArrayStock.UpdateCache(mainKey, value, uniqValue);
+        }
+
+        public string CacheArrayUniqColumm(string mainKey)
+        {
+            return CacheArrayStock.GetCacheArrayUniqColumm(mainKey);
         }
     }
 }
