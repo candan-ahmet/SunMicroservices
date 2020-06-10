@@ -20,7 +20,7 @@ namespace SunFramework.Interface.Manager
         void AddCacheArray(string mainKey, object value, string uniqColumn);
         void ClearCacheArray(string mainKey);
         bool ContainsKeyArray(string mainKey);
-        ICollection<object> GetCacheArrayValues(string mainKey);
+        object GetCacheArrayValues(string mainKey, int cacheMinute);
         object GetCacheArrayValue(string mainKey, object uniqValue, int cacheMinute);
         void UpdateCacheArray(string mainKey, object value, object uniqValue);
         string CacheArrayUniqColumm(string mainKey);

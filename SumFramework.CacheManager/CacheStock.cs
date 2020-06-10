@@ -73,17 +73,16 @@ namespace SunFramework.Cache
 
     public class CacheArrayStock
     {
-        private static readonly IDictionary<string, IDictionary<object, ICacheObjectModel>> cache = new Dictionary<string, IDictionary<object, ICacheObjectModel>>();
+        private static readonly IDictionary<string, ICacheObjectModel> cache = new Dictionary<string, ICacheObjectModel>();
+        private static readonly IDictionary<string, IDictionary<object, DateTime>> cacheTime = new Dictionary<string, IDictionary<object, DateTime>>();
         private static readonly IDictionary<string, string> uniqColumns = new Dictionary<string, string>();
 
         public static object GetValue(string mainKey, object uniqValue, int cacheMinute)
         {
-            if (cache.ContainsKey(mainKey))
-            {
-                ICacheObjectModel model;
-                if (cache[mainKey].TryGetValue(uniqValue, out model) && model.CacheDate.AddMinutes(cacheMinute) >= DateTime.Now)
-                    return cache[mainKey][uniqValue];
-            }
+            if (cache.ContainsKey(mainKey) && cacheTime.ContainsKey(mainKey) && cacheTime[mainKey].ContainsKey(uniqValue) && cacheTime[mainKey][uniqValue].AddMinutes(cacheMinute) >= DateTime.Now)
+                foreach (var item in (dynamic)cache[mainKey])
+                    if (item.GetType().GetProperty(GetCacheArrayUniqColumm(mainKey)).GetValue(item, null) == uniqValue)
+                        return item;
 
             return null;
         }
@@ -100,30 +99,50 @@ namespace SunFramework.Cache
 
         public static void AddCache(string mainKey, object value, string uniqColumn)
         {
-            if (!uniqColumns.ContainsKey(mainKey))
+            if (uniqColumns.ContainsKey(mainKey))
+                uniqColumns[mainKey] = uniqColumn;
+            else
                 uniqColumns.Add(mainKey, uniqColumn);
 
-            IDictionary<object, ICacheObjectModel> cacheList = new Dictionary<object, ICacheObjectModel>();
+            if (!ContainsKey(mainKey))
+                cache.Add(mainKey, new CacheModel(value));
+            else
+                cache[mainKey] = new CacheModel(value);
+
+            if (!cacheTime.ContainsKey(mainKey))
+                cacheTime.Add(mainKey, new Dictionary<object, DateTime>());
+
             foreach (var item in (dynamic)value)
-                cacheList.Add(item.GetType().GetProperty(uniqColumn).GetValue(item, null), new CacheModel(item));
-
-            if (!cache.ContainsKey(mainKey))
-                cache.Add(mainKey, new Dictionary<object, ICacheObjectModel>());
-
-            foreach (var item in cacheList)
-                cache[mainKey].Add(item);
+            {
+                var uniqValue = item.GetType().GetProperty(uniqColumn).GetValue(item, null);
+                if (!cacheTime[mainKey].ContainsKey(uniqValue))
+                    cacheTime[mainKey].Add(uniqValue, DateTime.Now);
+                else
+                    cacheTime[mainKey][uniqValue] = DateTime.Now;
+            }
         }
 
-        public static void UpdateCache(string mainKey, object value, object uniqValue)
+        public static void UpdateCache(string mainKey, object itemValue, object uniqValue)
         {
-            if (cache.ContainsKey(mainKey) && cache[mainKey].ContainsKey(uniqValue))
-                cache[mainKey][uniqValue] = new CacheModel(value);
+            if (cache.ContainsKey(mainKey) && cacheTime.ContainsKey(mainKey) && cacheTime[mainKey].ContainsKey(uniqValue))
+            {
+                cacheTime[mainKey][uniqValue] = DateTime.Now;
+                var value = (dynamic)cache[mainKey].Value;
+                for (int i = 0; i < value.Count; i++)
+                    if (uniqValue.ToString() == value[i].GetType().GetProperty(GetCacheArrayUniqColumm(mainKey)).GetValue(value[i]).ToString())
+                    {
+                        if (value[i] != itemValue)
+                            foreach (var prop in itemValue.GetType().GetProperties())
+                                itemValue.GetType().GetProperty(prop.Name).SetValue(value[i], itemValue.GetType().GetProperty(prop.Name).GetValue(itemValue));
+                        return;
+                    }
+            }
         }
 
-        public static IDictionary<object, ICacheObjectModel> GetCacheValues(string mainKey)
+        public static object GetCacheValues(string mainKey, int cacheMinute)
         {
-            if (cache.ContainsKey(mainKey))
-                return cache[mainKey];
+            if (cache.ContainsKey(mainKey) && cache[mainKey].CacheDate.AddMinutes(cacheMinute) >= DateTime.Now)
+                return cache[mainKey].Value;
 
             return null;
         }
@@ -131,7 +150,7 @@ namespace SunFramework.Cache
         public static void ClearCache(string mainKey)
         {
             if (cache.ContainsKey(mainKey))
-                cache[mainKey].Clear();
+                cache.Remove(mainKey);
         }
     }
 }

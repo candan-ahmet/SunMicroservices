@@ -27,8 +27,12 @@ namespace SunFramework.Cache
             string key = string.Join("", context.GetParameters().Select(c => c.Type.Name + c.Value));
             if (cacheManager.ContainsKey(mainKey, key))
             {
-                context.ReturnValue = cacheManager.GetCacheValue(mainKey, key, cacheMinute);
-                return;
+                var result = cacheManager.GetCacheValue(mainKey, key, cacheMinute);
+                if (result != null)
+                {
+                    context.ReturnValue = result;
+                    return;
+                }
             }
             await next(context);
             var value = context.ReturnValue;
@@ -57,8 +61,12 @@ namespace SunFramework.Cache
             string mainKey = $"{context.ImplementationMethod.DeclaringType.FullName}.{context.ProxyMethod.Name}";
             if (cacheManager.ContainsKeyArray(mainKey))
             {
-                context.ReturnValue = cacheManager.GetCacheArrayValues(mainKey);
-                return;
+                var result = cacheManager.GetCacheArrayValues(mainKey, cacheMinute);
+                if(result != null)
+                {
+                    context.ReturnValue = result;
+                    return;
+                }
             }
             await next(context);
             var value = context.ReturnValue;

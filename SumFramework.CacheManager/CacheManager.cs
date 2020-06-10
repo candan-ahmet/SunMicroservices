@@ -63,13 +63,9 @@ namespace SunFramework.Cache
             return CacheArrayStock.ContainsKey(mainKey);
         }
 
-        public ICollection<object> GetCacheArrayValues(string mainKey)
+        public object GetCacheArrayValues(string mainKey, int cacheMinute)
         {
-            ICollection<object> list = new Collection<object>();
-            var result = CacheArrayStock.GetCacheValues(mainKey);
-            foreach (var item in result)
-                list.Add(item.Value.Value);
-            return list;
+            return CacheArrayStock.GetCacheValues(mainKey, cacheMinute);
         }
 
         public object GetCacheArrayValue(string mainKey, object uniqValue, int cacheMinute)

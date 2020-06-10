@@ -56,10 +56,6 @@ namespace SunFramework.Services.Controllers
         private object getRequest()
         {
             var activeServices = unitOfWork.ServiceManager.GetActiveServices();
-            var _s = activeServices.First();
-            _s.PortNo = 7942;
-            unitOfWork.ServiceManager.UpdateService(_s);
-            ResponseModel result = new ResponseModel();
             var values = Request.GetRouteData().Values;
             var headers = Request.Headers.ToList();
             var parameters = Request.GetQueryNameValuePairs();
